@@ -104,6 +104,7 @@ a{color:inherit;text-decoration:none}
 .sec-head{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px}
 .sec-head h2{color:#111}
 .sec-head.centered{justify-content:center;text-align:center}
+.sec-head .sec-title-short{display:none}
 
 /* ============ CAROUSEL SHELL ============ */
 .rail-wrap{position:relative;margin-top:64px}
@@ -334,7 +335,8 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
   .sec-head{gap:12px}
   /* keep short section titles on a single line next to their button */
   .sec-head h2{font-size:clamp(14px,4vw,18px);line-height:1.35;white-space:nowrap}
-  #events .sec-head h2{white-space:normal}   /* only this one is too long to fit */
+  .sec-head .sec-title-full{display:none}
+  .sec-head .sec-title-short{display:inline-block}
   .sec-head .btn{width:auto;height:40px;padding:0 12px;font-size:11px;line-height:15px}
   .expert .btn{width:auto;height:48px;padding:0 32px}
   /* "jeff@jeffbrownyachts.com" is one unbreakable token in uppercase Mesmerize */
@@ -451,7 +453,8 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
 <section class="sec" id="events">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="h-sm split-words" data-split>Upcoming events &amp; private experiences</h2>
+      <h2 class="h-sm split-words sec-title-full" data-split>Upcoming events &amp; private experiences</h2>
+      <h2 class="h-sm split-words sec-title-short" data-split>Events</h2>
       <a class="btn btn-outline reveal d1" href="#events">View all events</a>
     </div>
     <div class="rail-wrap reveal d1">
