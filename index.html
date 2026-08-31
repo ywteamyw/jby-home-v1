@@ -385,12 +385,20 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
 @media (max-width:600px){
   .hero-actions{width:100%;gap:12px}
   .hero-actions .btn{width:100%}
-  .rail>*,.event-rail>*{flex:0 0 min(328px,calc(100vw - 56px));min-width:0}  /* min-width:0 or the CTA widens the card */
-  .rail{gap:12px}
-  .builders-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+  /* Centre-snapping rails: the card in focus sits mid-screen with an equal
+     sliver of the previous and next card either side. The track runs full-bleed
+     and carries side padding of (viewport - card) / 2 so the first and last
+     card can reach the centre too. */
+  :root{--card-w:min(300px,calc(100vw - 76px))}
+  .rail,.builders-grid{gap:12px;
+    margin-inline:calc(var(--page-pad) * -1);
+    padding-inline:calc((100vw - var(--card-w)) / 2);
+    scroll-snap-type:x mandatory}
+  .rail>*,.event-rail>*{flex:0 0 var(--card-w);min-width:0;scroll-snap-align:center}  /* min-width:0 or the CTA widens the card */
+  .builders-grid{display:flex;overflow-x:auto;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
   .builders-grid::-webkit-scrollbar{display:none}
-  .builder{flex:0 0 min(328px,calc(100vw - 56px));scroll-snap-align:start;aspect-ratio:325/288}
+  .builder{flex:0 0 var(--card-w);scroll-snap-align:center;aspect-ratio:325/288}
   .builder-panel{padding:14px}
   .sec-head{gap:12px}
   /* keep short section titles on a single line next to their button */
