@@ -100,7 +100,7 @@ a{color:inherit;text-decoration:none}
 /* ============ SECTION HEAD (title + action) ============ */
 .sec{padding-top:120px}
 #events{padding-bottom:120px}  /* Figma leaves 120px under the event rail */
-@media (max-width:960px){#events{padding-bottom:56px}}
+
 .sec-head{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px}
 .sec-head h2{color:#111}
 .sec-head.centered{justify-content:center;text-align:center}
@@ -164,7 +164,7 @@ a{color:inherit;text-decoration:none}
 
 /* ============ BUILDERS GRID ============ */
 .builders{background:var(--surface);padding:120px 0}
-.builders-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:64px}
+.builders-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .builder{position:relative;aspect-ratio:325/288;border-radius:2px;overflow:hidden;display:block;
   box-shadow:0 4px 20px 4px rgba(0,0,0,0.05);transition:box-shadow .3s ease}
 .builder:hover{box-shadow:0 8px 28px 6px rgba(0,0,0,0.12)}
@@ -285,18 +285,20 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
   .nav-cta{padding:0 14px}
   .hero{padding-bottom:64px}
   .hero .h-lg{font-size:32px;line-height:44px}
-  .sec{padding-top:72px}
+  .sec{padding-top:72px;padding-bottom:72px}
+  #events{padding-bottom:72px}   /* id beats .sec, so restate it here */
   .sec-head{gap:16px}          /* title left / button right, as on the live home page */
   .sec-head h2,.aftercare-title{font-size:24px;line-height:34px}
   .sec-head .btn{flex:0 0 auto}
   .rail-wrap{margin-top:32px}
+  .builders-wrap{margin-top:32px}
   .promo{min-height:560px;padding-bottom:48px}
-  .promo-text h2{font-size:24px;line-height:34px}
+  .promo-text h2{font-size:24px;line-height:30px}
   .promo-text p{font-size:16px;line-height:24px}
-  .builders{padding:72px 0 64px}
+  .builders{padding:72px 0}
   .builders-grid{margin-top:32px}
   .aftercare{padding-top:72px}
-  .bands{margin-top:40px}
+  .bands{margin-top:32px}
   .band-row{grid-template-columns:1fr}
   .band.tall{min-height:460px}
   .band.short{min-height:420px}
@@ -306,8 +308,8 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
   .band-text p{font-size:16px;line-height:24px}
   .band-text .btn{width:100%;height:auto;min-height:44px;padding:10px 14px;
     white-space:normal;text-align:center;font-size:13px;line-height:18px}
-  .visit{padding-top:72px}
-  .visit-body{grid-template-columns:1fr;gap:28px}
+  .visit{padding:72px 0}
+  .visit-body{grid-template-columns:1fr;gap:28px;margin-top:32px}
   .visit-map{height:380px}
   .visit-list{max-height:580px;overflow-y:auto}
   .expert{margin-top:0;padding:64px 24px;min-height:auto}
@@ -325,12 +327,12 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
 @media (max-width:600px){
   .hero-actions{width:100%;gap:12px}
   .hero-actions .btn{width:100%}
-  .rail>*,.event-rail>*{flex:0 0 min(304px,calc(100vw - 71px));min-width:0}  /* min-width:0 or the CTA widens the card */
-  .rail{gap:16px}
-  .builders-grid{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+  .rail>*,.event-rail>*{flex:0 0 min(328px,calc(100vw - 56px));min-width:0}  /* min-width:0 or the CTA widens the card */
+  .rail{gap:12px}
+  .builders-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
   .builders-grid::-webkit-scrollbar{display:none}
-  .builder{flex:0 0 min(304px,calc(100vw - 71px));scroll-snap-align:start;aspect-ratio:325/288}
+  .builder{flex:0 0 min(328px,calc(100vw - 56px));scroll-snap-align:start;aspect-ratio:325/288}
   .builder-panel{padding:14px}
   .sec-head{gap:12px}
   /* keep short section titles on a single line next to their button */
@@ -546,7 +548,8 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
     <div class="sec-head centered">
       <h2 class="h-sm split-words" data-split>The builders we represent</h2>
     </div>
-    <div class="builders-grid">
+    <div class="rail-wrap builders-wrap">
+      <div class="builders-grid" id="rail-builders">
       <a class="builder reveal " href="#builders" aria-label="Riva">
         <div class="builder-img"><img src="./assets/brand_riva.jpg" alt="Riva" loading="lazy"/></div>
         <div class="builder-panel">
@@ -627,6 +630,9 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
           <p>Power and sail boats built for shared adventures and exploration</p>
         </div>
       </a>
+      </div>
+      <button class="rail-next rail-prev" data-rail="rail-builders" data-dir="-1" aria-label="Previous brands" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button class="rail-next" data-rail="rail-builders" data-dir="1" aria-label="More brands" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     </div>
   </div>
 </section>
@@ -848,11 +854,12 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
       var rail = document.getElementById(btn.getAttribute('data-rail'));
       if(!rail) return;
       var card = rail.querySelector(':scope > *');
-      var step = card ? card.getBoundingClientRect().width + 20 : 460;
+      var gap = parseFloat(getComputedStyle(rail).columnGap) || 20;
+      var step = card ? card.getBoundingClientRect().width + gap : 460;
       rail.scrollBy({left: step * parseInt(btn.getAttribute('data-dir'),10), behavior:'smooth'});
     });
   });
-  document.querySelectorAll('.rail').forEach(function(rail){
+  document.querySelectorAll('.rail, .builders-grid').forEach(function(rail){
     function sync(){
       var wrap = rail.closest('.rail-wrap');
       var prev = wrap.querySelector('.rail-prev');
@@ -868,7 +875,7 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
   /* keep the arrow vertically centred on the card image */
   function placeArrows(){
     document.querySelectorAll('.rail-wrap').forEach(function(wrap){
-      var card = wrap.querySelector('.rail > *');
+      var card = wrap.querySelector('.rail > *, .builders-grid > *');
       if(!card) return;
       var h = card.getBoundingClientRect().height;
       wrap.querySelectorAll('.rail-next').forEach(function(b){ b.style.top = Math.round(h/2 - 24) + 'px'; });
