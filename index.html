@@ -392,13 +392,18 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
   :root{--card-w:min(300px,calc(100vw - 76px))}
   .rail,.builders-grid{gap:12px;
     margin-inline:calc(var(--page-pad) * -1);
-    padding-inline:calc((100vw - var(--card-w)) / 2);
+    padding-left:var(--page-pad);                          /* card 1 rests on the page gutter */
+    padding-right:calc((100vw - var(--card-w)) / 2);       /* so the last card can still centre */
+    scroll-padding-inline:var(--page-pad);                 /* symmetric, so centring stays true */
     scroll-snap-type:x mandatory}
   .rail>*,.event-rail>*{flex:0 0 var(--card-w);min-width:0;scroll-snap-align:center}  /* min-width:0 or the CTA widens the card */
+  /* the first card stays flush with the heading; centring starts from card 2 */
+  .rail>*:first-child,.builders-grid>*:first-child{scroll-snap-align:start}
   .builders-grid{display:flex;overflow-x:auto;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
   .builders-grid::-webkit-scrollbar{display:none}
   .builder{flex:0 0 var(--card-w);scroll-snap-align:center;aspect-ratio:325/288}
+  .builders-grid>.builder:first-child{scroll-snap-align:start}
   .builder-panel{padding:14px}
   .sec-head{gap:12px}
   /* keep short section titles on a single line next to their button */
