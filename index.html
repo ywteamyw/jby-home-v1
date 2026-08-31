@@ -197,31 +197,79 @@ a{color:inherit;text-decoration:none}
 .band-text h3{color:#fff}
 .band-text p{font-family:'Myriad Pro',sans-serif;font-weight:300;font-size:16px;line-height:24px;color:var(--soft);margin:6px 0 0}
 
-/* ============ VISIT US ============ */
+/* ============ LOCATIONS (ported from the live home page) ============ */
 .visit{padding:120px 0}
-.visit-body{display:grid;grid-template-columns:409px 1fr;gap:88px;margin-top:40px;align-items:start}
-.visit-list{max-height:580px;overflow-y:auto;padding-right:8px;scrollbar-width:thin;
-  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 92%,transparent 100%);
-  mask-image:linear-gradient(180deg,#000 0,#000 92%,transparent 100%)}
-.visit-list::-webkit-scrollbar{width:3px}
-.visit-list::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.18)}
-.visit-group{font-family:'Myriad Pro',sans-serif;font-weight:400;font-size:16px;line-height:28px;color:var(--navy);margin:0 0 4px}
-.visit-group+.visit-item{border-top:0}
-.visit-item{display:block;padding:24px 0;border-top:1px solid var(--line)}
-.visit-item:first-of-type{border-top:0}
-.visit-item-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.visit-item-top h3{font-family:'Mesmerize',sans-serif;font-weight:300;font-size:16px;line-height:24px;text-transform:uppercase;color:#111;margin:0;transition:color .2s}
-.visit-item:hover .visit-item-top h3{color:var(--navy)}
-.visit-item-top svg{width:24px;height:24px;flex:0 0 auto;color:#111}
-.visit-item p{font-family:'Myriad Pro',sans-serif;font-weight:400;font-size:14px;line-height:24px;color:var(--mute);margin:9px 0 0}
-.visit-map{height:580px;border-radius:2px;overflow:hidden;background:var(--section)}
-#visit-map{width:100%;height:100%}
+.ttl-mobile{display:none}
+.sec-filter{display:flex;gap:28px;align-items:center}
+.sec-filter button{font-family:'Mesmerize',sans-serif;font-weight:300;font-size:14px;letter-spacing:0.04em;
+  text-transform:uppercase;color:var(--mute);background:transparent;border:0;padding:6px 2px 10px;cursor:pointer;
+  position:relative;transition:color .2s}
+.sec-filter button::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:1px;background:var(--navy);
+  transform:scaleX(0);transform-origin:left;transition:transform .28s cubic-bezier(0.22,1,0.36,1)}
+.sec-filter button.on{color:var(--ink)}
+.sec-filter button.on::after{transform:scaleX(1)}
+.sec-filter-visit{margin:0 0 28px}
+.region-hide{display:none !important}
+.visit-grid{display:grid;grid-template-columns:409px 1fr;gap:88px;align-items:stretch}
+.visit-list{max-height:580px;overflow-y:auto;padding-right:16px;scrollbar-width:thin}
+.visit-list::-webkit-scrollbar{width:6px}
+.visit-list::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);border-radius:3px}
+.visit-list::-webkit-scrollbar-track{background:transparent}
+.visit-list h4{font-family:'Myriad Pro',sans-serif;font-weight:600;font-size:16px;line-height:24px;color:var(--ink);margin:0 0 12px}
+.visit-list h4:not(:first-child){margin-top:32px}
+.visit-item{padding:24px 0;border-bottom:0.5px solid var(--line);display:flex;justify-content:space-between;
+  align-items:center;gap:16px;cursor:pointer;transition:padding-left .25s}
+.visit-item:hover{padding-left:8px}
+.visit-item:focus-visible{outline:2px solid var(--navy);outline-offset:4px}
+.visit-item-l h5{font-family:'Mesmerize',sans-serif;font-weight:300;font-size:18px;line-height:28px;letter-spacing:0;
+  text-transform:uppercase;color:var(--ink);margin:0 0 2px}
+.visit-item-l small{font-family:'Myriad Pro',sans-serif;font-weight:400;font-size:16px;line-height:24px;color:#2a2a36}
+.visit-item-r{color:rgba(0,0,0,0.4);transition:.25s;flex:0 0 auto;display:flex}
+.visit-item-r svg{width:22px;height:22px;display:block}
+.visit-item:hover .visit-item-r{color:var(--navy);transform:translateX(4px)}
+.visit-appt{color:var(--mute);opacity:0.75}
+/* Maritime pill above Newport Harbor */
+.brow-maritime{display:inline-block;font-family:'Mesmerize',sans-serif;font-weight:300;
+  font-size:13px;line-height:14px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink);background:var(--sand);padding:5px 10px 4px;border-radius:1px;margin-bottom:10px}
+#visit-map{height:580px;border-radius:2px;overflow:hidden;background:#ecf0f3}
 .leaflet-container{background:#e9eef2;font-family:'Myriad Pro',sans-serif}
 .jby-divicon{background:transparent;border:0}
-.jby-pin{width:18px;height:18px;border-radius:50%;background:var(--navy);border:3px solid #fff;
-  box-shadow:0 2px 12px rgba(0,0,0,0.3);transition:transform .3s}
-.jby-pin.boatyard{background:var(--sand)}
-.jby-divicon:hover .jby-pin{transform:scale(1.25)}
+.jby-marker{width:16px;height:16px;border-radius:50%;background:var(--navy);border:2px solid #fff;
+  box-shadow:0 2px 10px rgba(0,0,0,0.3);transition:transform .25s;cursor:pointer}
+.jby-marker:hover{transform:scale(1.25)}
+.jby-marker.maritime{width:22px;height:22px;background:var(--sand)}
+
+/* LOCATION PREVIEW MODAL */
+.loc-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px}
+.loc-modal.open{display:flex}
+.loc-modal-veil{position:absolute;inset:0;background:rgba(10,22,32,0.55);backdrop-filter:blur(4px);cursor:pointer}
+.loc-modal-panel{position:relative;background:var(--paper);width:min(680px,100%);max-height:90vh;overflow:auto;
+  border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,0.35);display:flex;flex-direction:column}
+.loc-modal-close{position:absolute;top:14px;right:14px;z-index:3;width:36px;height:36px;border-radius:2px;
+  background:rgba(255,255,255,0.95);border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--ink);transition:.25s;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.loc-modal-close svg{width:18px;height:18px}
+.loc-modal-close:hover{background:#fff}
+.loc-modal-photo{width:100%;aspect-ratio:2/1;background-size:cover;background-position:center;background-color:#1a2a3a}
+.loc-modal-body{padding:22px 30px 26px}
+.loc-modal-body h3{font-family:'Mesmerize',sans-serif;font-weight:300;font-size:28px;line-height:36px;letter-spacing:0;
+  text-transform:uppercase;color:var(--ink);margin:0 0 6px}
+.loc-modal-subtitle{font-family:'Myriad Pro',sans-serif;font-weight:400;font-size:16px;line-height:22px;
+  color:var(--ink);margin:0 0 18px;opacity:0.85}
+.loc-modal-info{margin:0 0 16px;padding:12px 0;border-top:0.5px solid var(--line);border-bottom:0.5px solid var(--line)}
+.loc-modal-row{display:grid;grid-template-columns:100px 1fr;gap:32px;padding:6px 0;margin:0}
+.loc-modal-row dt{font-family:'Mesmerize',sans-serif;font-weight:300;font-size:13px;line-height:20px;
+  letter-spacing:0.08em;text-transform:uppercase;color:var(--mute);margin:0}
+.loc-modal-row dd{font-family:'Myriad Pro',sans-serif;font-weight:400;font-size:16px;line-height:24px;color:var(--ink);margin:0}
+.loc-modal-row dd a{color:var(--ink);transition:color .2s}
+.loc-modal-row dd a:hover{color:var(--navy)}
+.loc-modal-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.loc-modal-cta{display:inline-flex;align-items:center;gap:6px;padding:11px 20px;background:var(--navy);color:#fff;
+  font-family:'Mesmerize',sans-serif;font-weight:300;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;
+  border-radius:1px;transition:.25s}
+.loc-modal-cta svg{width:16px;height:16px}
+.loc-modal-cta:hover{background:var(--navy-d)}
 
 /* ============ EXPERT BAND ============ */
 .expert{margin-top:0;background:var(--navy);color:#fff;padding:0 40px;text-align:center;min-height:311px;
@@ -270,7 +318,7 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
 @media (max-width:1200px){
   .hero{min-height:760px}
   .builders-grid{grid-template-columns:repeat(2,1fr)}
-  .visit-body{grid-template-columns:360px 1fr;gap:48px}
+  .visit-grid{grid-template-columns:360px 1fr;gap:48px}
 }
 @media (max-width:960px){
   :root{--page-pad:24px;--hero-pad:24px}
@@ -309,9 +357,20 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
   .band-text .btn{width:100%;height:auto;min-height:44px;padding:10px 14px;
     white-space:normal;text-align:center;font-size:13px;line-height:18px}
   .visit{padding:72px 0}
-  .visit-body{grid-template-columns:1fr;gap:28px;margin-top:32px}
-  .visit-map{height:380px}
-  .visit-list{max-height:580px;overflow-y:auto}
+  .ttl-desktop{display:none}
+  .ttl-mobile{display:inline}
+  .sec-filter{gap:22px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .sec-filter::-webkit-scrollbar{display:none}
+  .sec-filter button{flex:0 0 auto}
+  .sec-filter-visit{margin:0 0 20px}
+  .visit-grid{grid-template-columns:1fr;gap:28px;margin-top:32px}
+  #visit-map{height:380px}
+  .visit-item-l h5{font-size:16px;line-height:24px}
+  .visit-item-l small{font-size:14px;line-height:20px}
+  .loc-modal{padding:16px}
+  .loc-modal-body{padding:20px 22px 24px}
+  .loc-modal-body h3{font-size:22px;line-height:30px}
+  .loc-modal-row{grid-template-columns:88px 1fr;gap:14px}
   .expert{margin-top:0;padding:64px 24px;min-height:auto}
   .foot-grid{grid-template-columns:1fr;gap:32px}
   .foot-col{padding-top:0}
@@ -716,58 +775,102 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
   </div>
 </section>
 
-<!-- ============ VISIT US ============ -->
+<!-- ============ LOCATIONS, MARINAS & BOATYARDS ============ -->
 <section class="sec visit" id="visit">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="h-sm split-words" data-split>Visit us</h2>
+      <h2 class="h-sm reveal"><span class="ttl-desktop">Locations, marinas &amp; boatyards</span><span class="ttl-mobile">Locations</span></h2>
       <a class="btn btn-outline reveal d1" href="#visit">View all</a>
     </div>
-    <div class="visit-body">
-      <div class="visit-list" id="visit-list">
-      <p class="visit-group">Boatyard</p>
-      <a class="visit-item reveal" href="#visit" data-lat="32.7135" data-lng="-117.233" data-kind="boatyard" data-name="San Diego Marina &amp; Boatyard">
-        <span class="visit-item-top"><h3>San Diego Marina &amp; Boatyard</h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
-        <p>Monday - Friday: 8am - 5pm.</p>
-      </a>
-      <p class="visit-group">Offices</p>
-      <a class="visit-item reveal" href="#visit" data-lat="32.718" data-lng="-117.227" data-name="San Diego">
-        <span class="visit-item-top"><h3>San Diego</h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
-        <p>Monday - Friday: 8am - 5pm.</p>
-      </a>
-      <a class="visit-item reveal" href="#visit" data-lat="33.6189" data-lng="-117.9298" data-name="Newport Harbor">
-        <span class="visit-item-top"><h3>Newport Harbor</h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
-        <p>Monday - Friday: 8am - 5pm.</p>
-      </a>
-      <a class="visit-item reveal" href="#visit" data-lat="33.9776" data-lng="-118.4497" data-name="Marina del Rey">
-        <span class="visit-item-top"><h3>Marina del Rey</h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
-        <p>Monday - Friday: 8am - 5pm.</p>
-      </a>
-      <a class="visit-item reveal" href="#visit" data-lat="37.8637" data-lng="-122.4998" data-name="Sausalito">
-        <span class="visit-item-top"><h3>Sausalito</h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
-        <p>Monday - Friday: 8am - 5pm.</p>
-      </a>
-      <a class="visit-item reveal" href="#visit" data-lat="47.664" data-lng="-122.401" data-name="Seattle">
-        <span class="visit-item-top"><h3>Seattle</h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
-        <p>Monday - Friday: 8am - 5pm.</p>
-      </a>
-      <a class="visit-item reveal" href="#visit" data-lat="19.642" data-lng="-155.996" data-name="Kona">
-        <span class="visit-item-top"><h3>Kona</h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
-        <p>Monday - Friday: 8am - 5pm.</p>
-      </a>
-      <a class="visit-item reveal" href="#visit" data-lat="34.2085" data-lng="-77.802" data-name="Wrightsville Beach">
-        <span class="visit-item-top"><h3>Wrightsville Beach</h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
-        <p>Monday - Friday: 8am - 5pm.</p>
-      </a>
-      <a class="visit-item reveal" href="#visit" data-lat="32.799" data-lng="-79.956" data-name="Charleston">
-        <span class="visit-item-top"><h3>Charleston</h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
-        <p>Monday - Friday: 8am - 5pm.</p>
-      </a>
+    <div class="sec-filter sec-filter-visit reveal" role="tablist" aria-label="Filter locations by region">
+      <button class="on" data-region="all">All</button>
+      <button data-region="west">West Coast</button>
+      <button data-region="east">East Coast</button>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-list reveal">
+        <h4>Marinas &amp; Boatyards</h4>
+        <div class="visit-item" data-loc="san-diego-boatyard" data-region="west" data-photo="office_san_diego_boatyard.jpg" data-type="BOATYARD"
+          data-city="San Diego, CA" data-address="2614 Shelter Island Drive, Suite A, San Diego, CA 92106" data-phone="(619) 222-9899" data-phone-href="tel:+16192229899"
+          data-hours="Mon &ndash; Sat, 8am &ndash; 5pm" data-fact="This full-service boatyard offers refit, repair, and rigging on the water." tabindex="0" role="button">
+          <div class="visit-item-l"><h5>San Diego Marina &amp; Boatyard</h5><small>Mon &ndash; Sat, 8am &ndash; 5pm <span class="visit-appt">&middot; By appointment anytime</span></small></div>
+          <div class="visit-item-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+        </div>
+        <h4>Sales Offices</h4>
+        <div class="visit-item" data-loc="san-diego" data-region="west" data-photo="office_san_diego.jpg" data-type="SALES OFFICE"
+          data-city="San Diego, CA" data-address="2330 Shelter Island Drive, Suite 105, San Diego, CA 92106" data-phone="(619) 222-9899" data-phone-href="tel:+16192229899"
+          data-hours="Mon &ndash; Sat, 8am &ndash; 5pm" data-fact="Our West Coast flagship, representing Axopar, BRABUS, Riva, and Pershing." tabindex="0" role="button">
+          <div class="visit-item-l"><h5>San Diego</h5><small>Mon &ndash; Sat, 8am &ndash; 5pm <span class="visit-appt">&middot; By appointment anytime</span></small></div>
+          <div class="visit-item-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+        </div>
+        <div class="visit-item maritime-item" data-loc="newport-harbor" data-region="west" data-photo="office_newport_harbor.jpg" data-type="MARITIME"
+          data-city="Newport Beach, CA" data-address="3101 West Coast Highway, Suite 130, Newport Beach, CA 92663" data-phone="(949) 524-3143" data-phone-href="tel:+19495243143"
+          data-hours="Mon &ndash; Sat, 8am &ndash; 5pm" data-fact="Our Newport Beach Maritime office. Private management and co-ownership programs." tabindex="0" role="button">
+          <div class="visit-item-l"><span class="brow-maritime">Maritime</span><h5>Newport Harbor</h5><small>Mon &ndash; Sat, 8am &ndash; 5pm <span class="visit-appt">&middot; By appointment anytime</span></small></div>
+          <div class="visit-item-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+        </div>
+        <div class="visit-item" data-loc="marina-del-rey" data-region="west" data-photo="office_marina_del_rey.webp" data-type="SALES OFFICE"
+          data-city="Marina del Rey, CA" data-address="13900 Marquesas Way, Marina del Rey, CA 90292" data-phone="(310) 295-9236" data-phone-href="tel:+13102959236"
+          data-hours="Mon &ndash; Sat, 8am &ndash; 5pm" data-fact="Our Los Angeles sales office, representing Axopar, BRABUS, and luxury brands." tabindex="0" role="button">
+          <div class="visit-item-l"><h5>Marina del Rey</h5><small>Mon &ndash; Sat, 8am &ndash; 5pm <span class="visit-appt">&middot; By appointment anytime</span></small></div>
+          <div class="visit-item-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+        </div>
+        <div class="visit-item" data-loc="sausalito" data-region="west" data-photo="office_sausalito.jpg" data-type="SALES OFFICE"
+          data-city="Sausalito, CA" data-address="300B Harbor Drive, Sausalito, CA 94965" data-phone="(510) 701-4880" data-phone-href="tel:+15107014880"
+          data-hours="Mon &ndash; Sat, 8am &ndash; 5pm" data-fact="Our Bay Area brokerage, representing Riva, Wally, and Pershing." tabindex="0" role="button">
+          <div class="visit-item-l"><h5>Sausalito</h5><small>Mon &ndash; Sat, 8am &ndash; 5pm <span class="visit-appt">&middot; By appointment anytime</span></small></div>
+          <div class="visit-item-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+        </div>
+        <div class="visit-item" data-loc="seattle" data-region="west" data-photo="office_seattle.jpg" data-type="SALES OFFICE"
+          data-city="Seattle, WA" data-address="2288 W Commodore Way, Suite 110, Seattle, WA 98199" data-phone="(206) 274-5257" data-phone-href="tel:+12062745257"
+          data-hours="Mon &ndash; Sat, 8am &ndash; 5pm" data-fact="Our Pacific Northwest sales office, representing Axopar, BRABUS, and Riva." tabindex="0" role="button">
+          <div class="visit-item-l"><h5>Seattle</h5><small>Mon &ndash; Sat, 8am &ndash; 5pm <span class="visit-appt">&middot; By appointment anytime</span></small></div>
+          <div class="visit-item-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+        </div>
+        <div class="visit-item" data-loc="kona" data-region="west" data-photo="office_kona.jpg" data-type="SALES OFFICE"
+          data-city="Kailua-Kona, HI" data-address="73-4539 Iki Place, Kailua-Kona, HI 96740" data-phone="(808) 989-8305" data-phone-href="tel:+18089898305"
+          data-hours="By appointment" data-fact="Our Hawaiian outpost. Private viewings by appointment only." tabindex="0" role="button">
+          <div class="visit-item-l"><h5>Kona</h5><small>By appointment</small></div>
+          <div class="visit-item-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+        </div>
+        <div class="visit-item" data-loc="wrightsville-beach" data-region="east" data-photo="office_wrightsville_beach.jpg" data-type="SALES OFFICE"
+          data-city="Wrightsville Beach, NC" data-address="100 Keel Street, Wrightsville Beach, NC 28480" data-phone="(910) 679-4158" data-phone-href="tel:+19106794158"
+          data-hours="Mon &ndash; Sat, 8am &ndash; 5pm" data-fact="Our East Coast sales office, representing Axopar, BRABUS, and Everglades." tabindex="0" role="button">
+          <div class="visit-item-l"><h5>Wrightsville Beach</h5><small>Mon &ndash; Sat, 8am &ndash; 5pm <span class="visit-appt">&middot; By appointment anytime</span></small></div>
+          <div class="visit-item-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+        </div>
+        <div class="visit-item" data-loc="charleston" data-region="east" data-photo="office_charleston.jpg" data-type="SALES OFFICE"
+          data-city="Charleston, SC" data-address="49 Immigration Street, Suite 101F, Charleston, SC 29403" data-phone="(843) 277-0777" data-phone-href="tel:+18432770777"
+          data-hours="Mon &ndash; Sat, 8am &ndash; 5pm" data-fact="Our South Atlantic sales office, representing Axopar, Everglades, and BRABUS." tabindex="0" role="button">
+          <div class="visit-item-l"><h5>Charleston</h5><small>Mon &ndash; Sat, 8am &ndash; 5pm <span class="visit-appt">&middot; By appointment anytime</span></small></div>
+          <div class="visit-item-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+        </div>
       </div>
-      <div class="visit-map reveal d1"><div id="visit-map"></div></div>
+      <div id="visit-map" class="reveal d1"></div>
     </div>
   </div>
 </section>
+
+<!-- LOCATION PREVIEW MODAL -->
+<div class="loc-modal" id="loc-modal" aria-hidden="true">
+  <div class="loc-modal-veil" data-close></div>
+  <div class="loc-modal-panel" role="dialog" aria-modal="true" aria-labelledby="loc-modal-title">
+    <button class="loc-modal-close" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="loc-modal-photo" id="loc-modal-photo"></div>
+    <div class="loc-modal-body">
+      <h3 id="loc-modal-title"></h3>
+      <p class="loc-modal-subtitle" id="loc-modal-subtitle"></p>
+      <dl class="loc-modal-info">
+        <div class="loc-modal-row"><dt>Address</dt><dd><a id="loc-modal-address-link" target="_blank" rel="noopener"></a></dd></div>
+        <div class="loc-modal-row"><dt>Phone</dt><dd><a id="loc-modal-phone"></a></dd></div>
+        <div class="loc-modal-row"><dt>Hours</dt><dd id="loc-modal-hours"></dd></div>
+      </dl>
+      <div class="loc-modal-ctas">
+        <a class="loc-modal-cta" href="#contact" data-close>Explore this office <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ============ GET EXPERT GUIDANCE ============ -->
 <section class="expert" id="contact">
@@ -915,38 +1018,138 @@ footer{background:var(--paper);padding:40px var(--page-pad) 80px;color:var(--mut
     }, {threshold:0.01}).observe(heroV);
   }
 
-  /* ---------- VISIT US map ---------- */
+  /* ---------- LOCATIONS: map + region filter + preview modal ----------
+     Ported from the live home page. Its Mapbox path is deliberately left out:
+     that token is restricted to the production domain, so this uses the
+     Leaflet fallback with keyless Esri tiles (CARTO now watermarks anonymous
+     tiles with "API KEY REQUIRED"). */
+  var OFFICES = [
+    {slug:'san-diego-boatyard', region:'west', lat:32.7100, lng:-117.2300},
+    {slug:'san-diego',          region:'west', lat:32.7157, lng:-117.1611},
+    {slug:'newport-harbor',     region:'west', lat:33.6189, lng:-117.9298, maritime:true},
+    {slug:'marina-del-rey',     region:'west', lat:33.9802, lng:-118.4517},
+    {slug:'sausalito',          region:'west', lat:37.8590, lng:-122.4853},
+    {slug:'seattle',            region:'west', lat:47.6062, lng:-122.3321},
+    {slug:'kona',               region:'west', lat:19.6400, lng:-155.9969},
+    {slug:'wrightsville-beach', region:'east', lat:34.2085, lng:-77.7964},
+    {slug:'charleston',         region:'east', lat:32.7765, lng:-79.9311}
+  ];
+  function openBySlug(slug){
+    var it = document.querySelector('[data-loc="'+slug+'"]');
+    if(it) it.click();
+  }
+  var mapFilter = null;
   var mapEl = document.getElementById('visit-map');
   if(mapEl && window.L){
-    var items = Array.prototype.slice.call(document.querySelectorAll('.visit-item'));
-    var pts = [];
-    var map = L.map('visit-map', {scrollWheelZoom:false, zoomControl:true, attributionControl:false, minZoom:2, maxZoom:16});
-    /* CARTO's anonymous tiles now come back stamped "API KEY REQUIRED";
-       Esri's Light Gray canvas is keyless and matches the muted Figma basemap. */
+    var map = L.map('visit-map', {scrollWheelZoom:false, zoomControl:true, attributionControl:true, minZoom:2, maxZoom:15})
+                .setView([39,-98], 4);
     var esri = 'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/';
     L.tileLayer(esri + 'World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom:16
+      maxZoom:15, attribution:'Esri, HERE, Garmin, &copy; OpenStreetMap contributors'
     }).addTo(map);
     L.tileLayer(esri + 'World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom:16, pane:'overlayPane'
+      maxZoom:15, pane:'overlayPane'
     }).addTo(map);
-    items.forEach(function(item){
-      var lat = parseFloat(item.getAttribute('data-lat')), lng = parseFloat(item.getAttribute('data-lng'));
-      if(isNaN(lat) || isNaN(lng)) return;
-      var icon = L.divIcon({className:'jby-divicon', html:'<div class="jby-pin ' + (item.getAttribute('data-kind')||'') + '"></div>', iconSize:[18,18], iconAnchor:[9,9]});
-      var marker = L.marker([lat,lng], {icon:icon, title:item.getAttribute('data-name')}).addTo(map);
-      pts.push([lat,lng]);
-      marker.bindTooltip(item.getAttribute('data-name'), {direction:'top', offset:[0,-12]});
-      item.addEventListener('mouseenter', function(){ marker.openTooltip(); });
-      item.addEventListener('mouseleave', function(){ marker.closeTooltip(); });
-      item.addEventListener('click', function(e){ e.preventDefault(); map.flyTo([lat,lng], 11, {duration:0.9}); });
+    var mk = [];
+    OFFICES.forEach(function(o){
+      var sz = o.maritime ? 22 : 16;
+      var icon = L.divIcon({className:'jby-divicon',
+        html:'<div class="jby-marker'+(o.maritime?' maritime':'')+'"></div>',
+        iconSize:[sz,sz], iconAnchor:[sz/2,sz/2]});
+      var marker = L.marker([o.lat,o.lng], {icon:icon, title:o.slug})
+                    .on('click', function(){ openBySlug(o.slug); }).addTo(map);
+      mk.push({marker:marker, region:o.region, latlng:[o.lat,o.lng]});
     });
-    /* same framing as the live home page */
-    var US_VIEW = {center:[37,-98], zoom:4};
-    map.setView(US_VIEW.center, US_VIEW.zoom);
-    map.on('click', function(){ map.flyTo(US_VIEW.center, US_VIEW.zoom, {duration:0.9}); });
-    setTimeout(function(){ map.invalidateSize(); map.setView(US_VIEW.center, US_VIEW.zoom); }, 300);
+    mapFilter = function(region){
+      var pts = mk.filter(function(m){
+        var show = (region==='all' || m.region===region);
+        if(show){ if(!map.hasLayer(m.marker)) m.marker.addTo(map); } else map.removeLayer(m.marker);
+        return show;
+      }).map(function(m){ return m.latlng; });
+      if(!pts.length) return;
+      if(pts.length===1){ map.setView(pts[0], 9); return; }
+      map.fitBounds(pts, {padding:[60,60], maxZoom:8});
+    };
+    setTimeout(function(){ map.invalidateSize(); mapFilter('all'); }, 150);
   }
+
+  /* region filter */
+  document.querySelectorAll('.sec-filter').forEach(function(bar){
+    var section = bar.closest('section');
+    if(!section) return;
+    var items = Array.prototype.filter.call(section.querySelectorAll('[data-region]'),
+      function(el){ return !el.closest('.sec-filter'); });
+    var subheads = section.querySelectorAll('.visit-list > h4');
+    bar.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        bar.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
+        b.classList.add('on');
+        var r = b.getAttribute('data-region');
+        items.forEach(function(it){
+          it.classList.toggle('region-hide', !(r==='all' || it.getAttribute('data-region')===r));
+        });
+        /* the "Marinas & Boatyards" / "Sales Offices" sub-heads only make sense on "All" */
+        subheads.forEach(function(h){ h.classList.toggle('region-hide', r!=='all'); });
+        if(mapFilter) mapFilter(r);
+      });
+    });
+  });
+
+  /* location preview modal */
+  (function(){
+    var modal = document.getElementById('loc-modal');
+    if(!modal) return;
+    var photoEl = document.getElementById('loc-modal-photo');
+    var titleEl = document.getElementById('loc-modal-title');
+    var subtitleEl = document.getElementById('loc-modal-subtitle');
+    var addressEl = document.getElementById('loc-modal-address-link');
+    var phoneEl = document.getElementById('loc-modal-phone');
+    var hoursEl = document.getElementById('loc-modal-hours');
+    var lastFocus = null;
+    function openModal(item){
+      var photo = item.getAttribute('data-photo') || '';
+      var type = item.getAttribute('data-type') || '';
+      var address = item.getAttribute('data-address') || '';
+      var phone = item.getAttribute('data-phone') || '';
+      var hours = item.getAttribute('data-hours') || '';
+      var title = item.querySelector('h5').textContent.trim();
+      lastFocus = document.activeElement;
+      photoEl.style.backgroundImage = photo ? "url('./assets/" + photo + "')" : '';
+      titleEl.textContent = title + (type === 'MARITIME' ? ': Maritime' : '');
+      subtitleEl.textContent = item.getAttribute('data-fact') || '';
+      addressEl.textContent = address;
+      addressEl.setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(address));
+      phoneEl.textContent = phone;
+      phoneEl.setAttribute('href', item.getAttribute('data-phone-href') || '');
+      hoursEl.textContent = hours + (hours !== 'By appointment' ? '  \u00b7 By appointment anytime' : '');
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      var close = modal.querySelector('.loc-modal-close');
+      if(close) close.focus();
+    }
+    function closeModal(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      if(lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    document.querySelectorAll('.visit-item').forEach(function(item){
+      item.addEventListener('click', function(e){
+        if(e.target.closest('a')) return;
+        openModal(item);
+      });
+      item.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openModal(item); }
+      });
+    });
+    modal.querySelectorAll('[data-close]').forEach(function(el){
+      el.addEventListener('click', closeModal);
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+  })();
 })();
 </script>
 </body>
